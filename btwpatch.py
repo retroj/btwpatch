@@ -34,17 +34,6 @@ import shutil
 import subprocess
 import tempfile
 
-def copytree (src, dst, symlinks=False, ignore=None):
-    if not os.path.exists(dst):
-        os.makedirs(dst)
-    for item in os.listdir(src):
-        s = os.path.join(src, item)
-        d = os.path.join(dst, item)
-        if os.path.isdir(s):
-            copytree(s, d, symlinks, ignore)
-        else:
-            shutil.copy2(s, d)
-
 def mkdir_p (path):
     try:
         os.makedirs(path)
@@ -53,6 +42,16 @@ def mkdir_p (path):
             pass
         else:
             raise
+
+def copytree (src, dst, symlinks=False, ignore=None):
+    mkdir_p(dst)
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s):
+            copytree(s, d, symlinks, ignore)
+        else:
+            shutil.copy2(s, d)
 
 def create_destination_directory (dest):
     if os.path.exists(dest):
