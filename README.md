@@ -2,6 +2,11 @@
 
 command line installer for Better Than Wolves
 
+## Requirements
+
+ - Python >= 2.7
+ - `zip` and `unzip`
+
 ## Example Usage
 
 ```shell
